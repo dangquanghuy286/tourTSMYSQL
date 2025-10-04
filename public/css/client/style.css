@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Archivo", sans-serif;
+}
+
+/* Header */
+header .search-input {
+  width: 150px;
+  max-width: 100%;
+}
+.inner-menu {
+  display: flex;
+  justify-content: center;
+}
+
+form.d-flex {
+  flex: 1;
+  justify-content: center;
+}
