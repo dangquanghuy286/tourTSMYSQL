@@ -1,6 +1,5 @@
 extends ../../layouts/default.pug
 include ../../mixins/format.pug
-
 block content
   .tour-detail
     .tour-header
@@ -8,14 +7,26 @@ block content
       p.code Mã tour: #{tour.code}
     
     .tour-image
-      img(src=tour.images, alt=tour.title)
+      div(class="swiper mySwiper2")
+        div(class="swiper-wrapper")
+          each image in tour.images 
+            div(class="swiper-slide")
+              .inner-image 
+                img(src=image, alt=tour.title)
+        div(class="swiper-button-next")
+        div(class="swiper-button-prev")
+      div(class="swiper mySwiper")
+        div(class="swiper-wrapper")
+          each image in tour.images 
+            div(class="swiper-slide")
+              .inner-image 
+                img(src=image, alt=tour.title)
     
     .inner-time-start   
-        .inner-time-start   
-            i.fa-solid.fa-calendar-days
-            span.label Lịch khởi hành :
-            +formatDateTime(tour.timeStart)
-
+      .inner-time-start   
+        i.fa-solid.fa-calendar-days
+        span.label Lịch khởi hành :
+        +formatDateTime(tour.timeStart)
     .tour-price
       if tour.discount > 0
         p.gia-goc Giá gốc: 
@@ -25,15 +36,12 @@ block content
         p.discount Giảm: #{tour.discount}%
       else
         p.gia #{tour.price.toLocaleString()} đ
-
     .tour-info
       h2 Thông tin Tour
       p= tour.information
-
     .tour-schedule
       h2 Lịch trình
       pre= tour.schedule   
-
     .tour-extra
       p 
         strong Khởi hành: 
@@ -41,7 +49,6 @@ block content
       p 
         strong Số chỗ còn: 
         | #{tour.stock}
-
     .tour-actions
       a.btn.btn-primary(href=`/booking/${tour.id}`)
         i.fas.fa-bus
