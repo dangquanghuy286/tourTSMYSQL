@@ -2,6 +2,7 @@ import express, { Express } from "express";
 // import sequelize from "./config/database";
 import dotenv from "dotenv";
 import clientRouter from "./routers/client/index.route";
+import moment from "moment";
 
 dotenv.config();
 // sequelize;
@@ -12,6 +13,8 @@ const port: number | string = process.env.PORT || 3000;
 // Nhung file tinh
 app.use(express.static("public"));
 
+//Thoi gian thuc
+app.locals.moment = moment;
 app.set("views", "./views");
 app.set("view engine", "pug");
 

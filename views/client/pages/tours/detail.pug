@@ -1,0 +1,51 @@
+extends ../../layouts/default.pug
+include ../../mixins/format.pug
+
+block content
+  .tour-detail
+    .tour-header
+      h1= tour.title
+      p.code Mã tour: #{tour.code}
+    
+    .tour-image
+      img(src=tour.images, alt=tour.title)
+    
+    .inner-time-start   
+        .inner-time-start   
+            i.fa-solid.fa-calendar-days
+            span.label Lịch khởi hành :
+            +formatDateTime(tour.timeStart)
+
+    .tour-price
+      if tour.discount > 0
+        p.gia-goc Giá gốc: 
+          span.price #{tour.price.toLocaleString()} đ
+        p.gia-km Giá khuyến mãi: 
+          span.price-special #{tour.price_special.toLocaleString()} đ
+        p.discount Giảm: #{tour.discount}%
+      else
+        p.gia #{tour.price.toLocaleString()} đ
+
+    .tour-info
+      h2 Thông tin Tour
+      p= tour.information
+
+    .tour-schedule
+      h2 Lịch trình
+      pre= tour.schedule   
+
+    .tour-extra
+      p 
+        strong Khởi hành: 
+        | #{new Date(tour.timeStart).toLocaleDateString("vi-VN")}
+      p 
+        strong Số chỗ còn: 
+        | #{tour.stock}
+
+    .tour-actions
+      a.btn.btn-primary(href=`/booking/${tour.id}`)
+        i.fas.fa-bus
+        |  Đặt Tour
+      a.btn.btn-secondary(href="/tours")
+        i.fas.fa-arrow-left
+        |  Quay lại danh sách tour

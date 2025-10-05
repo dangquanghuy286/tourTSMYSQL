@@ -1,32 +1,40 @@
-header.header 
+header.header.bg-white.shadow-sm.py-2.sticky-top
     .container
         .row.align-items-center
-            .col-md-3
-                a(href="/")
-                    img(src="/images/logo.png" alt="MusicApp Logo" class="logo")
-            .col-md-6
-                .d-flex.align-items-center.justify-content-between
-                    // Menu
-                    .inner-menu
-                        ul.nav.mb-2
-                            li.nav-item
-                                a.nav-link(href="/") Home
+            // Logo
+            .col-md-3.col-6
+                a(href="/" class="d-flex align-items-center text-decoration-none")
+                    img(src="/images/TVLK.png" alt="MusicApp Logo" class="logo me-2")
 
-                    // Search form với suggest
-                    .box-search
-                        form(action="/search/result" method="GET" class="d-flex")
-                            input(type="text" name="keyword" value=keyword class="form-control me-2 search-input" placeholder="Search...")
-                            button(type="submit" class="btn btn-outline-success") Search
-                        
-                        // Suggest dropdown
-                        .inner-suggest
-                            .inner-list
-                                
+            // Menu + Search
+            .col-md-6.d-none.d-md-flex.align-items-center.justify-content-center
+                // Menu
+                nav.inner-menu.me-4
+                    ul.nav
+                        li.nav-item
+                            a.nav-link.text-dark.fw-medium(href="/") Home
+                        li.nav-item
+                            a.nav-link.text-dark.fw-medium(href="/tours") Tours
+                        li.nav-item
+                            a.nav-link.text-dark.fw-medium(href="/about") About
+                        li.nav-item
+                            a.nav-link.text-dark.fw-medium(href="/contact") Contact
 
-            .col-md-3.text-end
+                // Search form
+                .box-search.flex-grow-1.position-relative
+                    form(action="/search/result" method="GET" class="d-flex")
+                        input(type="text" name="keyword" value=keyword class="form-control rounded-pill px-3 search-input" placeholder="🔍 Search...")
+                    
+                    // Suggest dropdown
+                    .inner-suggest.position-absolute.bg-white.shadow-sm.rounded.mt-1.w-100(style="display:none;")
+                        .inner-list.p-2
+                            p.text-muted.mb-0 Gợi ý tìm kiếm...
+
+            // User info
+            .col-md-3.col-6.text-end
                 if user
-                    span.me-3 Welcome, #{user.name}!
-                    a(href="/logout" class="btn btn-outline-danger") Logout
+                    span.me-3.fw-semibold.text-dark Hi, #{user.name}!
+                    a(href="/logout" class="btn btn-sm btn-outline-danger rounded-pill px-3") Logout
                 else
-                    a(href="/login" class="btn btn-outline-primary me-2") Login
-                    a(href="/register" class="btn btn-secondary") Register
+                    a(href="/login" class="btn btn-sm btn-outline-primary rounded-pill px-3 me-2") Login
+                    a(href="/register" class="btn btn-sm btn-primary rounded-pill px-3") Register

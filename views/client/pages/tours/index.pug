@@ -7,6 +7,18 @@ block content
                 .box-head 
                     h2.inner-title #{title}
 
-        ul 
+        .row 
             each item in tours 
-                li #{item.title}
+                .col-md-4.col-sm-6.mb-4
+                    .card.h-100.shadow-sm
+                        if item.images
+                            img.card-img-top(src=item.images.split(',')[0] alt=item.title)
+                        .card-body
+                            h5.card-title #{item.title}
+                            if item.information
+                                p.card-text #{item.information.substring(0, 100)}...
+                            p.text-primary.mb-1 Giá: #{item.price.toLocaleString()}đ
+                            if item.discount > 0
+                                p.text-danger Giảm giá: #{item.discount}%
+                        .card-footer.bg-white.border-top-0
+                            a.btn.btn-primary(href=`/tours/${item.slug}`) Xem chi tiết
